@@ -8,6 +8,8 @@ import Team from './components/team'
 import Contacts from './components/contacts/index.jsx'
 import Invoices from './components/invoices/index.jsx'
 import Form from './components/form/index.jsx'
+import Calendar from './components/calendar/index.jsx'
+import FAQ from './components/faq/index.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 
 
@@ -20,6 +22,8 @@ const router = createBrowserRouter(
       <Route path='contacts' element={<Contacts />}/>
       <Route path='invoices' element={<Invoices />}/>
       <Route path='form' element={<Form />}/>
+      <Route path='calendar' element={<Calendar />}/>
+      <Route path='faq' element={<FAQ />}/>
     </Route>
   )
 )
