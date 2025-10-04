@@ -10,8 +10,11 @@ import Invoices from './components/invoices/index.jsx'
 import Form from './components/form/index.jsx'
 import Calendar from './components/calendar/index.jsx'
 import FAQ from './components/faq/index.jsx'
+import BarChart from './components/bar/index.jsx'
+import PieChart from './components/pie/index.jsx'
+import LineChart from './components/line/index.jsx'
+import GeographyChart from './components/geo/index.jsx'
 import Dashboard from './pages/Dashboard.jsx'
-
 
 
 const router = createBrowserRouter(
@@ -24,6 +27,10 @@ const router = createBrowserRouter(
       <Route path='form' element={<Form />}/>
       <Route path='calendar' element={<Calendar />}/>
       <Route path='faq' element={<FAQ />}/>
+      <Route path='bar' element={<BarChart />}/>
+      <Route path='pie' element={<PieChart />}/>
+      <Route path='line' element={<LineChart />}/>
+      <Route path='geography' element={<GeographyChart />} />
     </Route>
   )
 )
