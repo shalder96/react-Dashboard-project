@@ -1,30 +1,31 @@
 import React, { useState } from 'react'
-import {ProSidebar, Menu, MenuItem, SubMenu} from 'react-pro-sidebar'
+import {ProSidebar, Menu, MenuItem } from 'react-pro-sidebar'
 import "react-pro-sidebar/dist/css/styles.css";
 import {Box, IconButton, Typography, useTheme} from '@mui/material'
-import {NavLink, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {tokens} from '../contexts/theme';
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
-import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
-import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import {
+  HomeOutlined,
+  PeopleOutlined,
+  ContactsOutlined,
+  ReceiptOutlined,
+  PersonOutlined,
+  CalendarTodayOutlined,
+  HelpOutlineOutlined,
+  BarChartOutlined,
+  PieChartOutlineOutlined,
+  TimelineOutlined,
+  MenuOutlined,
+  MapOutlined,
+} from "@mui/icons-material";
 
 const Item = ({title, to, icon, selected, setSelected}) => {
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   
   return (
     <MenuItem 
       active={selected === title} 
-      style={{color: colors.black[100]}}
+      style={{color: theme.palette.text.primary}}
       onClick={() => setSelected(title)}
       icon={icon}
     >
@@ -36,26 +37,29 @@ const Item = ({title, to, icon, selected, setSelected}) => {
 
 const Sidebar = () => {
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
   return (
     <Box
       sx={{
         "& .pro-sidebar-inner": {
-          background: `${colors.black[700]} !important`
+          backgroundColor: theme.palette.background.sidebar + "!important",
+          color: theme.palette.text.primary,
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important"
         },
         "& .pro-inner-item": {
-          padding: "5px 35px 5px 20px !important"
+          padding: "5px 35px 5px 20px !important",
+          color: theme.palette.text.primary,
         },
-        "& .pro-inner-item: hover": {
-          color: "#868dfb !important"
+        "& .pro-inner-item:hover": {
+          color: theme.palette.primary.main + " !important",
+          transition: "color 0.2s ease-in-out",
         },
-        "& .pro-inner-item.active": {
-          color: "#6870fa !important"
+         "& .pro-menu-item.active .pro-inner-item": {
+          color: theme.palette.primary.main + " !important",
+          fontWeight: "bold",
         },
       }}
     >
@@ -64,10 +68,10 @@ const Sidebar = () => {
           {/* LOGO AND MENU ICON  */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
-            icon={isCollapsed ? <MenuOutlinedIcon/> : undefined}
+            icon={isCollapsed ? <MenuOutlined /> : undefined}
             style={{
               margin: "10px 0 20px 0",
-              color: colors.black[100],
+              color: theme.palette.text.primary,
             }}
           >
             {!isCollapsed && (
@@ -77,26 +81,27 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant='h3' color={colors.black[100]}>
+                <Typography variant='h3' color={theme.palette.text.primary}>
                   ADMINIS
                 </Typography>
 
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                  <MenuOutlinedIcon/>
+                  <MenuOutlined />
                 </IconButton>
 
               </Box>
             )}
           </MenuItem>
+
           {/* USER  */}
           {!isCollapsed && (
             <Box mb="25px">
-              <Box display="flex" justify-centent="center" align-items="center">
+              <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   alt='profile-user'
                   width="100px"
                   height="100px"
-                  src={`../../assets/user`}
+                  src={`./user/admin.jpg`}
                   style={{cursor: "pointer", borderRadius: "50%"}}
                 />
               </Box>
@@ -104,7 +109,7 @@ const Sidebar = () => {
               <Box textAlign="center">
                 <Typography 
                   variant='h2' 
-                  color={colors.black[100]}
+                  color={theme.palette.text.primary}
                   fontWeight="bold"
                   sx={{m: "10px 0 0 0" }}
                 >
@@ -112,7 +117,7 @@ const Sidebar = () => {
                 </Typography>
                 <Typography
                   variant='h5'
-                  color={colors.teal[500]}
+                  color={theme.palette.secondary.main}
                 >
                   Admin Panel
                 </Typography>
@@ -125,14 +130,14 @@ const Sidebar = () => {
             <Item
               title="Dashboard"
               to="/"
-              icon={<HomeOutlinedIcon />}
+              icon={<HomeOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
 
             <Typography 
               variant='h6'
-              color={colors.black[300]}
+              color={theme.palette.text.secondary}
               sx={{m: "15px 0 5px 20px"}}
               >
                 Data
@@ -141,28 +146,28 @@ const Sidebar = () => {
             <Item
               title="Manage Team"
               to="/team"
-              icon={<PeopleOutlinedIcon />}
+              icon={<PeopleOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Contact Information"
               to="/contacts"
-              icon={<ContactsOutlinedIcon />}
+              icon={<ContactsOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Invoices Balances"
               to="/invoices"
-              icon={<ReceiptOutlinedIcon />}
+              icon={<ReceiptOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
 
             <Typography 
               variant='h6'
-              color={colors.black[300]}
+              color={theme.palette.text.secondary}
               sx={{m: "15px 0 5px 20px"}}
               >
                 Pages
@@ -171,28 +176,28 @@ const Sidebar = () => {
             <Item
               title="Profile Form"
               to="/form"
-              icon={<PersonOutlinedIcon />}
+              icon={<PersonOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Calendar"
               to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
+              icon={<CalendarTodayOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="FAQ Page"
               to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
+              icon={<HelpOutlineOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
 
             <Typography 
               variant='h6'
-              color={colors.black[300]}
+              color={theme.palette.text.secondary}
               sx={{m: "15px 0 5px 20px"}}
               >
                 Charts
@@ -201,28 +206,28 @@ const Sidebar = () => {
             <Item
               title="Bar Chart"
               to="/bar"
-              icon={<BarChartOutlinedIcon />}
+              icon={<BarChartOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Pie Chart"
               to="/pie"
-              icon={<PieChartOutlineOutlinedIcon />}
+              icon={<PieChartOutlineOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Line Chart"
               to="/line"
-              icon={<TimelineOutlinedIcon />}
+              icon={<TimelineOutlined />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Geography Chart"
               to="/geography"
-              icon={<MapOutlinedIcon />}
+              icon={<MapOutlined />}
               selected={selected}
               setSelected={setSelected}
             />

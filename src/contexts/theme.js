@@ -122,38 +122,56 @@ export const themeSettings = (mode) => {
 
   return {
     palette : {
-      mode: mode,
+      mode,
       ...(mode === 'dark'
         ? {
+
+          //DARK MODE
+
           primary: {
+            main: colors.indigo[500],
+          },
+          secondary: {
+            main: colors.teal[400],
+          },
+          neutral: {
+            dark: colors.black[700],
+            main: colors.black[500],
+            light: colors.black[100],
+          },
+          background: {
+            default: colors.black[900],
+            paper: colors.black[700],
+            sidebar: colors.black[800],
+          },
+          text: {
+            primary: "#f1f5f9",
+            secondary: "#94a3b8",
+          },
+        } : {
+
+          // LIGHT MODE
+
+           primary: {
             main: colors.indigo[500],
           },
           secondary: {
             main: colors.teal[500],
           },
           neutral: {
-            dark: colors.black[700],
-            main: colors.black[500],
+            dark: colors.black[600],
+            main: colors.black[400],
             light: colors.black[100],
           },
           background: {
-            default: colors.black[900]
-          }
-        } : {
-           primary: {
-            main: colors.indigo[100],
+            default: "#f8fafc", 
+            paper: "#ffffff", 
+            sidebar: "#f1f5f9",
           },
-          secondary: {
-            main: colors.teal[500],
+          text: {
+            primary: "#1e293b",
+            secondary: "#475569",
           },
-          neutral: {
-            dark: colors.black[700],
-            main: colors.black[500],
-            light: colors.black[100],
-          },
-          background: {
-            default: colors.black[900]
-          }
         }
       )
     },

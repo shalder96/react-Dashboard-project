@@ -1,4 +1,4 @@
-import {Box,  colors,  Typography, useTheme} from "@mui/material"
+import {Box, Typography, useTheme} from "@mui/material"
 import {tokens} from '../../contexts/theme'
 import ProgressCircle from '../progressCircle/ProgressCircle'
 
